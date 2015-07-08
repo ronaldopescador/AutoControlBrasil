@@ -39,8 +39,6 @@ public class CadastrarVeiculoActivity extends AppCompatActivity {
 
         TextView txtPlaca = (TextView) findViewById(R.id.txtPlaca);
         txtPlaca.setText(veiculo.getPlaca());
-
-
     }
 
     @Override
