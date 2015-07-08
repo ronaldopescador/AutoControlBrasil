@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Auto Control Brasil</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_novo_veiculo">Novo Veículo</string>
+    <string name="menu_nova_foto">Tirar foto</string>
+    <string name="menu_abrir_cadastro_veiculo">Veículo</string>
+    <string name="nome_veiculo">Veículo</string>
+    <string name="nome_ano">Ano</string>
+    <string name="nome_placa">Placa</string>
+    <string name="acao_salvar">Salvar</string>
+</resources>
