@@ -1,8 +1,5 @@
 package br.com.autocontrolbrasil.autocontrolbrasil.model.vo;
 
-/**
- * Created by Edir on 02/07/2015.
- */
 public class VeiculoVO {
 
     private Integer id;
@@ -13,7 +10,7 @@ public class VeiculoVO {
 
     private String placa;
 
-    private String foto;
+    private byte[] foto;
 
     public Integer getId() {
         return id;
@@ -47,11 +44,11 @@ public class VeiculoVO {
         this.placa = placa;
     }
 
-    public String getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
 }

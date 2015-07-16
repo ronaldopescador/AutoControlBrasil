@@ -7,9 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import br.com.autocontrolbrasil.autocontrolbrasil.model.vo.VeiculoVO;
 
-/**
- * Created by Edir on 02/07/2015.
- */
 public class VeiculoDAO extends BaseDAO  {
     private static String tabela = "veiculo";
     private static String id = "_id";
@@ -59,7 +56,7 @@ public class VeiculoDAO extends BaseDAO  {
             veiculo.setNome( cursor.getString( cursor.getColumnIndex(nome)));
             veiculo.setPlaca( cursor.getString( cursor.getColumnIndex(placa)));
             veiculo.setAno_modelo( cursor.getInt( cursor.getColumnIndex(ano_modelo)));
-            veiculo.setFoto( cursor.getString( cursor.getColumnIndex(foto)));
+            veiculo.setFoto( cursor.getBlob(cursor.getColumnIndex(foto)));
         }
 
         cursor.close();
@@ -70,9 +67,8 @@ public class VeiculoDAO extends BaseDAO  {
 
     public Cursor listar(){
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.query(tabela, new String[]{id, nome, placa, ano_modelo},
+        return db.query(tabela, new String[]{id, nome, placa, ano_modelo},
                 null, null, null, null, null);
 
-        return cursor;
     }
 }
