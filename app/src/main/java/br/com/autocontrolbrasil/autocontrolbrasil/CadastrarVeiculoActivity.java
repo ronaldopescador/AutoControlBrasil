@@ -1,7 +1,6 @@
 package br.com.autocontrolbrasil.autocontrolbrasil;
 
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -16,14 +15,17 @@ import android.widget.TextView;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.VeiculoDAO;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.vo.VeiculoVO;
 import br.com.autocontrolbrasil.autocontrolbrasil.utilities.FileUtilities;
+import br.com.autocontrolbrasil.autocontrolbrasil.utilities.ImageUtilities;
+import br.com.autocontrolbrasil.autocontrolbrasil.utilities.NumberUtilities;
 
 public class CadastrarVeiculoActivity extends AppCompatActivity {
-
     private static Integer codigoRequisicao = 9876;
+
+    private VeiculoDAO dao = new VeiculoDAO(this);
 
     private Uri uriFoto;
 
-    VeiculoVO veiculo;
+    private VeiculoVO veiculo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +36,12 @@ public class CadastrarVeiculoActivity extends AppCompatActivity {
 
         Integer idVeiculo = i.getIntExtra("ID_VEICULO", 0);
 
-        VeiculoDAO daoProjeto = new VeiculoDAO(this);
-        this.veiculo = daoProjeto.consultar(idVeiculo);
-
-        TextView txtPlaca = (TextView) findViewById(R.id.txtPlaca);
-        txtPlaca.setText(veiculo.getPlaca());
+        if (idVeiculo > 0) {
+            this.veiculo = dao.consultar(idVeiculo);
+        } else {
+            this.veiculo = new VeiculoVO();
+        }
+        atualizarTela();
     }
 
     @Override
@@ -52,17 +55,9 @@ public class CadastrarVeiculoActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_novo_veiculo) {
-            return true;
-        }
+            this.veiculo = new VeiculoVO();
 
-        if (id == R.id.action_nova_foto) {
-            Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-            uriFoto = obterCaminhoNovaFoto();
-
-            i.putExtra(MediaStore.EXTRA_OUTPUT, uriFoto);
-
-            startActivityForResult(i, codigoRequisicao);
+            atualizarTela();
 
             return true;
         }
@@ -79,7 +74,7 @@ public class CadastrarVeiculoActivity extends AppCompatActivity {
         }
     }
 
-    private Uri obterCaminhoNovaFoto(){;
+    private Uri obterCaminhoNovaFoto(){
         return Uri.fromFile(FileUtilities.getNomeArquivoImagem());
     }
 
@@ -87,20 +82,47 @@ public class CadastrarVeiculoActivity extends AppCompatActivity {
         EditText txtPlaca = (EditText) findViewById(R.id.txtPlaca);
         EditText txtVeiculo = (EditText) findViewById(R.id.txtVeiculo);
         EditText txtAno = (EditText) findViewById(R.id.txtAno);
+        ImageView imgFoto = (ImageView) findViewById(R.id.imgFoto);
 
-        VeiculoVO veiculo = new VeiculoVO();
-        veiculo.setPlaca(txtPlaca.getText().toString());
-        veiculo.setNome(txtVeiculo.getText().toString());
-        //veiculo.setAno_modelo();
+        this.veiculo.setPlaca(txtPlaca.getText().toString());
+        this.veiculo.setNome(txtVeiculo.getText().toString());
+        this.veiculo.setAno_modelo(NumberUtilities.parseInt(txtAno.getText().toString()));
+        this.veiculo.setFoto(ImageUtilities.imageViewToByte(imgFoto));
 
-        VeiculoDAO dao = new VeiculoDAO(this);
-
-        dao.salvar(veiculo);
+        dao.salvar(this.veiculo);
 
         setResult(RESULT_OK);
 
         finish();
     }
 
+    private void atualizarTela(){
+        TextView txtVeiculo = (TextView) findViewById( R.id.txtVeiculo);
+        TextView txtPlaca = (TextView) findViewById( R.id.txtPlaca);
+        TextView txtAno = (TextView) findViewById( R.id.txtAno);
+        ImageView imgFoto = (ImageView) findViewById( R.id.imgFoto);
+
+        if (veiculo.getId() == null) {
+            txtVeiculo.setText("");
+            txtPlaca.setText("");
+            txtAno.setText("");
+            imgFoto.setImageBitmap(null);
+        } else {
+            txtVeiculo.setText(this.veiculo.getNome());
+            txtPlaca.setText(this.veiculo.getPlaca());
+            txtAno.setText(this.veiculo.getAno_modelo().toString());
+            imgFoto.setImageBitmap(ImageUtilities.byteToBitmap(this.veiculo.getFoto()));
+        }
+    }
+
+    public void novaFoto(View v){
+        Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        uriFoto = obterCaminhoNovaFoto();
+
+        i.putExtra(MediaStore.EXTRA_OUTPUT, uriFoto);
+
+        startActivityForResult(i, codigoRequisicao);
+    }
 }
 

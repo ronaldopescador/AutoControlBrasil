@@ -32,8 +32,9 @@ public class PrincipalActivity extends ListActivity {
 
         this.adapter = new ListaVeiculosAdapter(this, cursor, 0);
 
-        //Associa a id List padrão do android
         setListAdapter(adapter);
+
+        //cursor.close();
     }
 
     @Override

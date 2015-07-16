@@ -29,14 +29,11 @@ public class VeiculoDAO extends BaseDAO  {
         valores.put(ano_modelo, veiculo.getAno_modelo());
         valores.put(foto, veiculo.getFoto());
 
-        db.insert(tabela, null, valores);
-
-
-//        if (veiculo.getId() > 0) {
-//            db.update(tabela, valores, id + " = ?", new String[]{ veiculo.getId().toString()});
-//        } else {
-//            db.insert(tabela, null, valores);
-//        }
+        if (veiculo.getId() == null) {
+            db.insert(tabela, null, valores);
+        } else {
+            db.update(tabela, valores, id + " = ?", new String[]{ veiculo.getId().toString()});
+        }
 
         db.close();
     }
