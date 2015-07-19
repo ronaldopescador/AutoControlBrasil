@@ -9,13 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import br.com.autocontrolbrasil.autocontrolbrasil.adapter.ListaVeiculosAdapter;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.VeiculoDAO;
 
 
-public class PrincipalActivity extends ListActivity {
+public class PrincipalActivity extends ListActivity{
 
     private ListaVeiculosAdapter adapter;
 
@@ -48,10 +47,7 @@ public class PrincipalActivity extends ListActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_cadastrar_veiculo) {
-            Intent i = new Intent(this, CadastrarVeiculoActivity.class);
-
-            startActivityForResult(i, 1);
-
+            cadastrarVeiculo();
             return true;
         }
 
@@ -72,4 +68,12 @@ public class PrincipalActivity extends ListActivity {
         startActivityForResult(i, 2);
     }
 
+    private void cadastrarVeiculo(){
+        Intent i = new Intent(this, CadastrarVeiculoActivity.class);
+        startActivityForResult(i, 1);
+    }
+
+    public void novoVeiculo(View v){
+        cadastrarVeiculo();
+    }
 }
