@@ -9,4 +9,9 @@
     <string name="nome_ano">Ano</string>
     <string name="nome_placa">Placa</string>
     <string name="acao_salvar">Salvar</string>
+    <string name="troca_oleo_filtro">Óleo, filtro...(mil Km)</string>
+    <string name="troca_pneu_freio">Pneus, freio...(mil Km)</string>
+    <string name="revisao_geral">Revisao geral (mil Km)</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>

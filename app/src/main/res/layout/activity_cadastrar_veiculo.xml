@@ -9,97 +9,216 @@
     tools:context="br.com.autocontrolbrasil.autocontrolbrasil.CadastrarVeiculoActivity"
     android:onClick="salvar">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/lblVeiculo"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="@string/nome_veiculo"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="1000dp"
+        >
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtVeiculo"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/lblVeiculo"
-        android:layout_toEndOf="@+id/lblVeiculo"
-        android:layout_marginLeft="10dp"
-        android:layout_alignTop="@+id/lblVeiculo" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/lblVeiculo"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:text="@string/nome_veiculo"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/nome_ano"
-        android:id="@+id/lblAno"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/lblVeiculo"
-        android:layout_alignParentTop="false"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtVeiculo"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toRightOf="@+id/lblVeiculo"
+                android:layout_toEndOf="@+id/lblVeiculo"
+                android:layout_marginLeft="10dp"
+                android:layout_alignTop="@+id/lblVeiculo" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtAno"
-        android:layout_alignLeft="@+id/txtVeiculo"
-        android:layout_alignTop="@+id/lblAno"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:inputType="numberDecimal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/nome_ano"
+                android:id="@+id/lblAno"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/lblPlaca"
+                android:layout_alignParentTop="false"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/nome_placa"
-        android:id="@+id/lblPlaca"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/lblAno"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtAno"
+                android:layout_alignLeft="@+id/txtVeiculo"
+                android:layout_alignTop="@+id/lblAno"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:inputType="numberDecimal" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtPlaca"
-        android:layout_alignLeft="@+id/txtAno"
-        android:layout_alignStart="@+id/txtAno"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/lblPlaca" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/nome_placa"
+                android:id="@+id/lblPlaca"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/lblVeiculo"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/acao_salvar"
-        android:id="@+id/btnSalvar"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="salvar"
-        android:nestedScrollingEnabled="true" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtPlaca"
+                android:layout_alignLeft="@+id/txtAno"
+                android:layout_alignStart="@+id/txtAno"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/lblPlaca" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imgFoto"
-        android:layout_above="@+id/btnSalvar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/txtPlaca"
-        android:layout_alignRight="@+id/btnSalvar"
-        android:layout_alignEnd="@+id/btnSalvar"
-        android:onClick="novaFoto" />
+            <SeekBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/skbAno"
+                android:layout_below="@+id/txtAno"
+                android:paddingBottom="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/troca_oleo_filtro"
+                android:id="@+id/lblTrocaOleo"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/skbAno" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTrocaOleo"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/skbAno"
+                android:layout_toRightOf="@+id/lblTrocaOleo"
+                android:layout_toEndOf="@+id/lblTrocaOleo" />
+
+            <SeekBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/skbTrocaOleo"
+                android:layout_below="@+id/lblTrocaOleo"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:paddingBottom="10dp"
+                android:max="100"
+                android:indeterminate="false"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/troca_pneu_freio"
+                android:id="@+id/lblTrocaPneu"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/skbTrocaOleo"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTrocaPneu"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/skbTrocaOleo"
+                android:layout_toRightOf="@+id/lblTrocaPneu"
+                android:layout_toEndOf="@+id/lblTrocaPneu" />
+
+            <SeekBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/skbTrocaPneu"
+                android:layout_below="@+id/lblTrocaPneu"
+                android:paddingBottom="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:max="100"
+                android:indeterminate="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/revisao_geral"
+                android:id="@+id/lblRevisaoGeral"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/skbTrocaPneu"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtRevisaoGeral"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/skbTrocaPneu"
+                android:layout_toRightOf="@+id/lblRevisaoGeral"
+                android:layout_toEndOf="@+id/lblTrocaPneu" />
+
+            <SeekBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/skbRevisaoGeral"
+                android:layout_below="@id/lblRevisaoGeral"
+                android:paddingBottom="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:max="100"
+                android:indeterminate="false"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:id="@+id/imgFoto"
+                android:layout_below="@+id/skbRevisaoGeral"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="novaFoto"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/acao_salvar"
+                android:id="@+id/btnSalvar"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/imgFoto"
+                android:onClick="salvar" />
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -4,9 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Edir on 02/07/2015.
- */
 public class AutoControlOpenHelper extends SQLiteOpenHelper {
 
 
@@ -24,7 +21,10 @@ public class AutoControlOpenHelper extends SQLiteOpenHelper {
         sql.append("       placa TEXT, ");
         sql.append("       nome TEXT, ");
         sql.append("       foto BLOB, ");
-        sql.append("       ano_modelo INTEGER ");
+        sql.append("       ano_modelo INTEGER, ");
+        sql.append("       troca_oleo_filtro INTEGER, ");
+        sql.append("       troca_pneu_freio INTEGER, ");
+        sql.append("       revisao_geral INTEGER ");
         sql.append("       )");
         db.execSQL(sql.toString());
     }
