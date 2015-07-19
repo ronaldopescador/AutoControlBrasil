@@ -136,15 +136,16 @@ public class CadastrarVeiculoActivity extends AppCompatActivity implements SeekB
             txtVeiculo.setText("");
             txtPlaca.setText("");
             imgFoto.setImageBitmap(null);
-            imgFoto.setBackgroundColor( getTitleColor());
-            txtAno.setText("");
-            skbAno.setProgress(Calendar.YEAR - anoBase);
+            imgFoto.setBackgroundColor(getTitleColor());
             txtTrocaOleo.setText("5");
             skbTrocaOleo.setProgress(5);
             txtTrocaPneu.setText("10");
             skbTrocaPneu.setProgress(10);
             txtRevisaoGeral.setText("30");
             skbRevisaoGeral.setProgress(30);
+            Integer sugestaoAno = Calendar.YEAR - anoBase;
+            txtAno.setText(sugestaoAno.toString());
+            skbAno.setProgress(sugestaoAno);
         } else {
             txtVeiculo.setText(veiculo.getNome());
             txtPlaca.setText(veiculo.getPlaca());
