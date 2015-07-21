@@ -27,6 +27,18 @@ public class AutoControlOpenHelper extends SQLiteOpenHelper {
         sql.append("       revisao_geral INTEGER ");
         sql.append("       )");
         db.execSQL(sql.toString());
+
+        sql = new StringBuffer();
+
+        sql.append("create table abastecimento ( ");
+        sql.append("       _id INTEGER PRIMARY KEY AUTOINCREMENT, ");
+        sql.append("       km_anterior REAL, ");
+        sql.append("       km_atual REAL, ");
+        sql.append("       volume REAL, ");
+        sql.append("       valor_total REAL, ");
+        sql.append("       km_media REAL ");
+        sql.append("       )");
+        db.execSQL(sql.toString());
     }
 
     @Override

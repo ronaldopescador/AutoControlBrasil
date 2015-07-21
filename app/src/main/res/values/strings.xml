@@ -14,4 +14,15 @@
     <string name="revisao_geral">Revisao geral (mil Km)</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_listar_abastecimentos">ListarAbastecimentos</string>
+    <string name="title_activity_lista_abastecimentos">ListaAbastecimentos</string>
+    <string name="title_activity_inclusao_abastecimento">InclusaoAbastecimentoActivity</string>
+
+    <string name="km_anterior">Km Anterior</string>
+    <string name="km_atual">Km Atual</string>
+    <string name="litros">Litros</string>
+    <string name="media">Média</string>
+    <string name="valor_total">Valor Total</string>
+    <string name="menu_novo_abastecimento">Novo Abastecimento</string>
+    <string name="menu_abastecimentos">Abastecimentos</string>
 </resources>

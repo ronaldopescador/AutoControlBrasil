@@ -39,6 +39,7 @@ public class PrincipalActivity extends ListActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_principal, menu);
+
         return true;
     }
 
@@ -48,6 +49,9 @@ public class PrincipalActivity extends ListActivity{
 
         if (id == R.id.action_cadastrar_veiculo) {
             cadastrarVeiculo();
+            return true;
+        } else if (id == R.id.action_abastecimentos){
+            abastecimentos();
             return true;
         }
 
@@ -70,6 +74,11 @@ public class PrincipalActivity extends ListActivity{
 
     private void cadastrarVeiculo(){
         Intent i = new Intent(this, CadastrarVeiculoActivity.class);
+        startActivityForResult(i, 1);
+    }
+
+    private void abastecimentos(){
+        Intent i = new Intent(this, ListaAbastecimentosActivity.class);
         startActivityForResult(i, 1);
     }
 

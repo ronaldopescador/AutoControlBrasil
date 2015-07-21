@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.com.autocontrolbrasil.autocontrolbrasil.ListaAbastecimentosActivity">
+    <item
+        android:id="@+id/action_novo_abastecimento"
+        android:orderInCategory="100"
+        android:title="@string/menu_novo_abastecimento"
+        app:showAsAction="never" />
+</menu>
