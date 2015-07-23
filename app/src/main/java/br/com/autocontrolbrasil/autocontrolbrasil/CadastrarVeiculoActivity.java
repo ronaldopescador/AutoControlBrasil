@@ -120,9 +120,9 @@ public class CadastrarVeiculoActivity extends AppCompatActivity implements SeekB
         veiculo.setNome( txtVeiculo.getText().toString());
         veiculo.setAno_modelo( NumberUtilities.parseInt( txtAno.getText().toString()));
         veiculo.setFoto( ImageUtilities.imageViewToByte( imgFoto));
-        veiculo.setTroca_oleo_filtro( NumberUtilities.parseInt( txtTrocaOleo.getText().toString()));
-        veiculo.setTroca_pneu_freio( NumberUtilities.parseInt( txtTrocaPneu.getText().toString()));
-        veiculo.setRevisao_geral( NumberUtilities.parseInt( txtRevisaoGeral.getText().toString()));
+        veiculo.setTroca_oleo_filtro_previsao(NumberUtilities.parseInt(txtTrocaOleo.getText().toString()));
+        veiculo.setTroca_pneu_freio_previsao(NumberUtilities.parseInt(txtTrocaPneu.getText().toString()));
+        veiculo.setRevisao_geral_previsao(NumberUtilities.parseInt(txtRevisaoGeral.getText().toString()));
 
         dao.salvar(veiculo);
 
@@ -152,12 +152,12 @@ public class CadastrarVeiculoActivity extends AppCompatActivity implements SeekB
             imgFoto.setImageBitmap(ImageUtilities.byteToBitmap(veiculo.getFoto()));
             txtAno.setText(veiculo.getAno_modelo().toString());
             skbAno.setProgress(veiculo.getAno_modelo() - anoBase);
-            txtTrocaOleo.setText(veiculo.getTroca_oleo_filtro().toString());
-            skbTrocaOleo.setProgress(veiculo.getTroca_oleo_filtro());
-            txtTrocaPneu.setText(veiculo.getTroca_pneu_freio().toString());
-            skbTrocaPneu.setProgress(veiculo.getTroca_pneu_freio());
-            txtRevisaoGeral.setText(veiculo.getRevisao_geral().toString());
-            skbRevisaoGeral.setProgress(veiculo.getRevisao_geral());
+            txtTrocaOleo.setText(veiculo.getTroca_oleo_filtro_previsao().toString());
+            skbTrocaOleo.setProgress(veiculo.getTroca_oleo_filtro_previsao());
+            txtTrocaPneu.setText(veiculo.getTroca_pneu_freio_previsao().toString());
+            skbTrocaPneu.setProgress(veiculo.getTroca_pneu_freio_previsao());
+            txtRevisaoGeral.setText(veiculo.getRevisao_geral_previsao().toString());
+            skbRevisaoGeral.setProgress(veiculo.getRevisao_geral_previsao());
         }
     }
 

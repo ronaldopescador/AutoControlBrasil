@@ -12,35 +12,17 @@ public class VeiculoVO {
 
     private byte[] foto;
 
-    private Integer troca_oleo_filtro;
+    private Integer troca_oleo_filtro_previsao;
 
-    private Integer troca_pneu_freio;
+    private Integer troca_oleo_filtro_anterior;
 
-    private Integer revisao_geral;
+    private Integer troca_pneu_freio_previsao;
 
-    public Integer getTroca_oleo_filtro() {
-        return troca_oleo_filtro;
-    }
+    private Integer troca_pneu_freio_anterior;
 
-    public void setTroca_oleo_filtro(Integer troca_oleo_filtro) {
-        this.troca_oleo_filtro = troca_oleo_filtro;
-    }
+    private Integer revisao_geral_previsao;
 
-    public Integer getTroca_pneu_freio() {
-        return troca_pneu_freio;
-    }
-
-    public void setTroca_pneu_freio(Integer troca_pneu_freio) {
-        this.troca_pneu_freio = troca_pneu_freio;
-    }
-
-    public Integer getRevisao_geral() {
-        return revisao_geral;
-    }
-
-    public void setRevisao_geral(Integer revisao_geral) {
-        this.revisao_geral = revisao_geral;
-    }
+    private Integer revisao_geral_anterior;
 
     public Integer getId() {
         return id;
@@ -80,5 +62,53 @@ public class VeiculoVO {
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
+    }
+
+    public Integer getTroca_oleo_filtro_previsao() {
+        return troca_oleo_filtro_previsao;
+    }
+
+    public void setTroca_oleo_filtro_previsao(Integer troca_oleo_filtro_previsao) {
+        this.troca_oleo_filtro_previsao = troca_oleo_filtro_previsao;
+    }
+
+    public Integer getTroca_oleo_filtro_anterior() {
+        return troca_oleo_filtro_anterior;
+    }
+
+    public void setTroca_oleo_filtro_anterior(Integer troca_oleo_filtro_anterior) {
+        this.troca_oleo_filtro_anterior = troca_oleo_filtro_anterior;
+    }
+
+    public Integer getTroca_pneu_freio_previsao() {
+        return troca_pneu_freio_previsao;
+    }
+
+    public void setTroca_pneu_freio_previsao(Integer troca_pneu_freio_previsao) {
+        this.troca_pneu_freio_previsao = troca_pneu_freio_previsao;
+    }
+
+    public Integer getTroca_pneu_freio_anterior() {
+        return troca_pneu_freio_anterior;
+    }
+
+    public void setTroca_pneu_freio_anterior(Integer troca_pneu_freio_anterior) {
+        this.troca_pneu_freio_anterior = troca_pneu_freio_anterior;
+    }
+
+    public Integer getRevisao_geral_previsao() {
+        return revisao_geral_previsao;
+    }
+
+    public void setRevisao_geral_previsao(Integer revisao_geral_previsao) {
+        this.revisao_geral_previsao = revisao_geral_previsao;
+    }
+
+    public Integer getRevisao_geral_anterior() {
+        return revisao_geral_anterior;
+    }
+
+    public void setRevisao_geral_anterior(Integer revisao_geral_anterior) {
+        this.revisao_geral_anterior = revisao_geral_anterior;
     }
 }

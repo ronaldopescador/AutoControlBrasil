@@ -34,7 +34,11 @@
         </activity>
         <activity
             android:name=".SelecionarVeiculoActivity"
-            android:label="SelecionarVeiculoActivity">
+            android:label="SelecionarVeiculoActivity" >
+        </activity>
+        <activity
+            android:name=".ManutencaoActivity"
+            android:label="@string/title_activity_manutencao" >
         </activity>
     </application>
 

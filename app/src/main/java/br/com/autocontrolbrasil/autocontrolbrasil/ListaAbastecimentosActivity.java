@@ -3,12 +3,10 @@ package br.com.autocontrolbrasil.autocontrolbrasil;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import br.com.autocontrolbrasil.autocontrolbrasil.R;
 import br.com.autocontrolbrasil.autocontrolbrasil.adapter.ListaAbastecimentosAdapter;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.AbastecimentoDAO;
 

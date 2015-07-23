@@ -12,5 +12,9 @@
         android:orderInCategory="100"
         android:title="@string/menu_abastecimentos"
         app:showAsAction="never" />
-
+    <item
+        android:id="@+id/action_manutencao"
+        android:orderInCategory="100"
+        android:title="@string/menu_manutencao"
+        app:showAsAction="never" />
 </menu>

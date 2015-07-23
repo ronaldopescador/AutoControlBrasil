@@ -22,9 +22,12 @@ public class AutoControlOpenHelper extends SQLiteOpenHelper {
         sql.append("       nome TEXT, ");
         sql.append("       foto BLOB, ");
         sql.append("       ano_modelo INTEGER, ");
-        sql.append("       troca_oleo_filtro INTEGER, ");
-        sql.append("       troca_pneu_freio INTEGER, ");
-        sql.append("       revisao_geral INTEGER ");
+        sql.append("       troca_oleo_filtro_previsao INTEGER DEFAULT 0, ");
+        sql.append("       troca_oleo_filtro_anterior INTEGER DEFAULT 0, ");
+        sql.append("       troca_pneu_freio_previsao INTEGER DEFAULT 0, ");
+        sql.append("       troca_pneu_freio_anterior INTEGER DEFAULT 0, ");
+        sql.append("       revisao_geral_previsao INTEGER DEFAULT 0, ");
+        sql.append("       revisao_geral_anterior INTEGER DEFAULT 0 ");
         sql.append("       )");
         db.execSQL(sql.toString());
 

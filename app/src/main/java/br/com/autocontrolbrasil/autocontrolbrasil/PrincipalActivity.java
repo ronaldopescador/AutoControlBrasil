@@ -1,17 +1,15 @@
 package br.com.autocontrolbrasil.autocontrolbrasil;
 
-import android.app.ListActivity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
 
-import br.com.autocontrolbrasil.autocontrolbrasil.adapter.ListaVeiculosAdapter;
+import java.io.Serializable;
+
 import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.VeiculoDAO;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.vo.VeiculoVO;
 
@@ -20,7 +18,7 @@ public class PrincipalActivity extends AppCompatActivity{
     private static final Integer requestCodeSelecao = 100;
     private static final Integer requestCodeVeiculo = 101;
     private static final Integer requestCodeAbastecimento = 102;
-//    private ListaVeiculosAdapter adapter;
+    private static final Integer requestCodeManutencao = 103;
     private VeiculoDAO dao;
     private VeiculoVO veiculo = null;
 
@@ -59,6 +57,9 @@ public class PrincipalActivity extends AppCompatActivity{
         } else if (id == R.id.action_abastecimentos){
             abastecimentos();
             return true;
+        } else if (id == R.id.action_manutencao){
+            manutencao();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -86,6 +87,12 @@ public class PrincipalActivity extends AppCompatActivity{
     private void abastecimentos(){
         Intent i = new Intent(this, ListaAbastecimentosActivity.class);
         startActivityForResult(i, requestCodeAbastecimento);
+    }
+
+    private void manutencao(){
+        Intent i = new Intent(this, ManutencaoActivity.class);
+        i.putExtra("idVeiculo", veiculo.getId());
+        startActivityForResult(i, requestCodeManutencao);
     }
 
 /*    public void novoVeiculo(View v){

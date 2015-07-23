@@ -14,9 +14,12 @@ public class VeiculoDAO extends BaseDAO  {
     private static final String nome = "nome";
     private static final String ano_modelo = "ano_modelo";
     private static final String foto = "foto";
-    private static final String troca_oleo_filtro = "troca_oleo_filtro";
-    private static final String troca_pneu_freio = "troca_pneu_freio";
-    private static final String revisao_geral = "revisao_geral";
+    private static final String troca_oleo_filtro_previsao = "troca_oleo_filtro_previsao";
+    private static final String troca_oleo_filtro_anterior = "troca_oleo_filtro_anterior";
+    private static final String troca_pneu_freio_previsao = "troca_pneu_freio_previsao";
+    private static final String troca_pneu_freio_anterior = "troca_pneu_freio_anterior";
+    private static final String revisao_geral_previsao = "revisao_geral_previsao";
+    private static final String revisao_geral_anterior = "revisao_geral_anterior";
 
     public VeiculoDAO(Context context) {
         super(context);
@@ -31,9 +34,12 @@ public class VeiculoDAO extends BaseDAO  {
         valores.put(nome, veiculo.getNome());
         valores.put(ano_modelo, veiculo.getAno_modelo());
         valores.put(foto, veiculo.getFoto());
-        valores.put(troca_oleo_filtro, veiculo.getTroca_oleo_filtro());
-        valores.put(troca_pneu_freio, veiculo.getTroca_pneu_freio());
-        valores.put(revisao_geral, veiculo.getRevisao_geral());
+        valores.put(troca_oleo_filtro_previsao, veiculo.getTroca_oleo_filtro_previsao());
+        valores.put(troca_oleo_filtro_anterior, veiculo.getTroca_oleo_filtro_anterior());
+        valores.put(troca_pneu_freio_previsao, veiculo.getTroca_pneu_freio_previsao());
+        valores.put(troca_pneu_freio_anterior, veiculo.getTroca_pneu_freio_anterior());
+        valores.put(revisao_geral_previsao, veiculo.getRevisao_geral_previsao());
+        valores.put(revisao_geral_anterior, veiculo.getRevisao_geral_anterior());
 
         if (veiculo.getId() == null) {
             db.insert(tabela, null, valores);
@@ -50,20 +56,25 @@ public class VeiculoDAO extends BaseDAO  {
 
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.query(tabela, new String[]{id, nome, placa, ano_modelo, foto,
-                        troca_oleo_filtro, troca_pneu_freio, revisao_geral}, id + " = ?",
+                        troca_oleo_filtro_previsao, troca_oleo_filtro_anterior,
+                        troca_pneu_freio_previsao, troca_pneu_freio_anterior,
+                        revisao_geral_previsao, revisao_geral_anterior}, id + " = ?",
                 new String[]{ idVeiculo.toString()}, null, null, null);
 
         if (cursor.moveToFirst()) {
             veiculo = new VeiculoVO();
 
-            veiculo.setId(cursor.getInt(cursor.getColumnIndex(id)));
-            veiculo.setNome(cursor.getString(cursor.getColumnIndex(nome)));
-            veiculo.setPlaca(cursor.getString(cursor.getColumnIndex(placa)));
-            veiculo.setAno_modelo(cursor.getInt(cursor.getColumnIndex(ano_modelo)));
-            veiculo.setFoto(cursor.getBlob(cursor.getColumnIndex(foto)));
-            veiculo.setTroca_oleo_filtro(cursor.getInt(cursor.getColumnIndex(troca_oleo_filtro)));
-            veiculo.setTroca_pneu_freio(cursor.getInt(cursor.getColumnIndex(troca_pneu_freio)));
-            veiculo.setRevisao_geral(cursor.getInt(cursor.getColumnIndex(revisao_geral)));
+            veiculo.setId( cursor.getInt( cursor.getColumnIndex(id)));
+            veiculo.setNome( cursor.getString( cursor.getColumnIndex(nome)));
+            veiculo.setPlaca( cursor.getString( cursor.getColumnIndex(placa)));
+            veiculo.setAno_modelo( cursor.getInt( cursor.getColumnIndex(ano_modelo)));
+            veiculo.setFoto( cursor.getBlob( cursor.getColumnIndex(foto)));
+            veiculo.setTroca_oleo_filtro_previsao( cursor.getInt( cursor.getColumnIndex(troca_oleo_filtro_previsao)));
+            veiculo.setTroca_oleo_filtro_anterior( cursor.getInt( cursor.getColumnIndex(troca_oleo_filtro_anterior)));
+            veiculo.setTroca_pneu_freio_previsao( cursor.getInt( cursor.getColumnIndex(troca_pneu_freio_previsao)));
+            veiculo.setTroca_pneu_freio_anterior( cursor.getInt( cursor.getColumnIndex(troca_pneu_freio_anterior)));
+            veiculo.setRevisao_geral_previsao( cursor.getInt( cursor.getColumnIndex(revisao_geral_previsao)));
+            veiculo.setRevisao_geral_anterior( cursor.getInt( cursor.getColumnIndex(revisao_geral_anterior)));
         }
 
         cursor.close();
@@ -74,6 +85,10 @@ public class VeiculoDAO extends BaseDAO  {
 
     public Cursor listar(){
         SQLiteDatabase db = helper.getReadableDatabase();
-        return db.query(tabela, new String[]{id, nome, placa, ano_modelo, troca_oleo_filtro, troca_pneu_freio, revisao_geral}, null, null, null, null, null);
+        return db.query(tabela, new String[]{id, nome, placa, ano_modelo,
+                troca_oleo_filtro_previsao, troca_oleo_filtro_anterior,
+                troca_pneu_freio_previsao, troca_pneu_freio_anterior,
+                revisao_geral_previsao, revisao_geral_anterior},
+                null, null, null, null, null);
     }
 }

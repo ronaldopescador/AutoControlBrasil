@@ -1,7 +1,7 @@
 package br.com.autocontrolbrasil.autocontrolbrasil;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,7 +11,7 @@ import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.AbastecimentoDAO;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.vo.AbastecimentoVO;
 
 
-public class InclusaoAbastecimentoActivity extends ActionBarActivity {
+public class InclusaoAbastecimentoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
