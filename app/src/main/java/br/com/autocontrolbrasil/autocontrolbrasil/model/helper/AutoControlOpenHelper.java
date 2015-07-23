@@ -13,7 +13,7 @@ public class AutoControlOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        StringBuffer sql = null;
+        StringBuffer sql;
 
         sql = new StringBuffer();
         sql.append("create table veiculo ( ");
@@ -31,7 +31,7 @@ public class AutoControlOpenHelper extends SQLiteOpenHelper {
         sql = new StringBuffer();
 
         sql.append("create table abastecimento ( ");
-        sql.append("       _id INTEGER PRIMARY KEY AUTOINCREMENT, ");
+        sql.append("       _id INTEGER PRIMARY KEY, ");
         sql.append("       km_anterior REAL, ");
         sql.append("       km_atual REAL, ");
         sql.append("       volume REAL, ");

@@ -8,32 +8,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import br.com.autocontrolbrasil.autocontrolbrasil.adapter.ListaVeiculosAdapter;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.VeiculoDAO;
+import br.com.autocontrolbrasil.autocontrolbrasil.model.vo.VeiculoVO;
 
 
-public class PrincipalActivity extends ListActivity{
-
-    private ListaVeiculosAdapter adapter;
-
+public class PrincipalActivity extends AppCompatActivity{
+    private static final Integer requestCodeSelecao = 100;
+    private static final Integer requestCodeVeiculo = 101;
+    private static final Integer requestCodeAbastecimento = 102;
+//    private ListaVeiculosAdapter adapter;
     private VeiculoDAO dao;
+    private VeiculoVO veiculo = null;
+
+    private static EditText txtVeiculo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        this.dao = new VeiculoDAO(this);
+        carregarCampos();
 
-        Cursor cursor = this.dao.listar();
+        selecionarVeiculoVO(true);
+    }
 
-        this.adapter = new ListaVeiculosAdapter(this, cursor, 0);
-
-        setListAdapter(adapter);
-
-        //cursor.close();
+    @Override
+    protected void onResume() {
+        carregarVeiculo();
+        super.onResume();
     }
 
     @Override
@@ -59,30 +65,57 @@ public class PrincipalActivity extends ListActivity{
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Cursor cursor = dao.listar();
-        adapter.changeCursor(cursor);
-        adapter.notifyDataSetChanged();
+        if ((requestCode == requestCodeSelecao) && (resultCode > 0)) {
+            abrirVeiculoVO(resultCode);
+        }
     }
 
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        Intent i = new Intent(this, CadastrarVeiculoActivity.class);
-        i.putExtra("ID_VEICULO", new Long(id).intValue());
+//    @Override
+//    protected void onListItemClick(ListView l, View v, int position, long id) {
+//        Intent i = new Intent(this, CadastrarVeiculoActivity.class);
+//        i.putExtra("ID_VEICULO", new Long(id).intValue());
 
-        startActivityForResult(i, 2);
-    }
+//        startActivityForResult(i, 2);
+//    }
 
     private void cadastrarVeiculo(){
         Intent i = new Intent(this, CadastrarVeiculoActivity.class);
-        startActivityForResult(i, 1);
+        startActivityForResult(i, requestCodeVeiculo);
     }
 
     private void abastecimentos(){
         Intent i = new Intent(this, ListaAbastecimentosActivity.class);
-        startActivityForResult(i, 1);
+        startActivityForResult(i, requestCodeAbastecimento);
     }
 
-    public void novoVeiculo(View v){
+/*    public void novoVeiculo(View v){
         cadastrarVeiculo();
+    }
+*/
+    private void selecionarVeiculoVO(Boolean autoSelecao){
+        Intent i = new Intent(this, SelecionarVeiculoActivity.class);
+
+        i.putExtra("AUTO_SELECAO", autoSelecao);
+
+        startActivityForResult(i, requestCodeSelecao);
+}
+
+    private void abrirVeiculoVO(Integer idVeiculo){
+        this.dao = new VeiculoDAO(this);
+        veiculo = dao.consultar(idVeiculo);
+    }
+
+    public void selecionarVeiculo(View v){
+        selecionarVeiculoVO(false);
+    }
+
+    private void carregarCampos(){
+        txtVeiculo = (EditText) findViewById(R.id.txtVeiculo);
+    }
+
+    private void carregarVeiculo(){
+        if (veiculo != null){
+            txtVeiculo.setText( veiculo.getNome());
+        }
     }
 }

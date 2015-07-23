@@ -32,6 +32,10 @@
             android:name=".ListaAbastecimentosActivity"
             android:label="@string/title_activity_lista_abastecimentos" >
         </activity>
+        <activity
+            android:name=".SelecionarVeiculoActivity"
+            android:label="SelecionarVeiculoActivity">
+        </activity>
     </application>
 
 </manifest>

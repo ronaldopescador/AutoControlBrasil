@@ -143,7 +143,7 @@ public class CadastrarVeiculoActivity extends AppCompatActivity implements SeekB
             skbTrocaPneu.setProgress(10);
             txtRevisaoGeral.setText("30");
             skbRevisaoGeral.setProgress(30);
-            Integer sugestaoAno = Calendar.YEAR - anoBase;
+            Integer sugestaoAno = Calendar.getInstance().get(Calendar.YEAR) - anoBase;
             txtAno.setText(sugestaoAno.toString());
             skbAno.setProgress(sugestaoAno);
         } else {
