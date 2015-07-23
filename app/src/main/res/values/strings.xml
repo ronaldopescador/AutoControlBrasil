@@ -32,4 +32,9 @@
     <string name="ultima_troca">Última troca</string>
     <string name="proxima_troca">Próxima troca</string>
     <string name="menu_manutencao">Manutenção</string>
+    <string name="ultimo_abastecimento">Último abastecimento</string>
+    <string name="label_km">Km</string>
+    <string name="label_oleo_filtro">Óleo, filtros</string>
+    <string name="label_pneu_freio_suspensao">Pneus, freio, suspensão</string>
+    <string name="label_revisao_geral">Revisão Geral</string>
 </resources>
