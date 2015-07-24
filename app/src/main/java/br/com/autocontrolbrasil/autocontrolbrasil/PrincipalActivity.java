@@ -1,17 +1,17 @@
 package br.com.autocontrolbrasil.autocontrolbrasil;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
-
-import java.io.Serializable;
+import android.widget.Toast;
 
 import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.VeiculoDAO;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.vo.VeiculoVO;
+import br.com.autocontrolbrasil.autocontrolbrasil.utilities.DateUtilities;
 
 
 public class PrincipalActivity extends AppCompatActivity{
@@ -23,6 +23,11 @@ public class PrincipalActivity extends AppCompatActivity{
     private VeiculoVO veiculo = null;
 
     private static EditText txtVeiculo;
+    private static EditText txtKmAbastecimento;
+    private static EditText txtDataAbastecimento;
+    private static EditText txtKmTrocaFreio;
+    private static EditText txtKmTrocaPneu;
+    private static EditText txtKmRevisaoGeral;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,14 +76,6 @@ public class PrincipalActivity extends AppCompatActivity{
         }
     }
 
-//    @Override
-//    protected void onListItemClick(ListView l, View v, int position, long id) {
-//        Intent i = new Intent(this, CadastrarVeiculoActivity.class);
-//        i.putExtra("ID_VEICULO", new Long(id).intValue());
-
-//        startActivityForResult(i, 2);
-//    }
-
     private void cadastrarVeiculo(){
         Intent i = new Intent(this, CadastrarVeiculoActivity.class);
         startActivityForResult(i, requestCodeVeiculo);
@@ -95,10 +92,6 @@ public class PrincipalActivity extends AppCompatActivity{
         startActivityForResult(i, requestCodeManutencao);
     }
 
-/*    public void novoVeiculo(View v){
-        cadastrarVeiculo();
-    }
-*/
     private void selecionarVeiculoVO(Boolean autoSelecao){
         Intent i = new Intent(this, SelecionarVeiculoActivity.class);
 
@@ -112,17 +105,68 @@ public class PrincipalActivity extends AppCompatActivity{
         veiculo = dao.consultar(idVeiculo);
     }
 
-    public void selecionarVeiculo(View v){
-        selecionarVeiculoVO(false);
-    }
-
     private void carregarCampos(){
         txtVeiculo = (EditText) findViewById(R.id.txtVeiculo);
+        txtKmAbastecimento = (EditText) findViewById(R.id.txtKmAbastecimento);
+        txtDataAbastecimento = (EditText) findViewById(R.id.txtDataAbastecimento);
+        txtKmTrocaFreio = (EditText) findViewById(R.id.txtKmTrocaFreio);
+        txtKmTrocaPneu = (EditText) findViewById(R.id.txtKmTrocaPneu);
+        txtKmRevisaoGeral = (EditText) findViewById(R.id.txtKmRevisaoGeral);
     }
 
-    private void carregarVeiculo(){
+    private void carregarVeiculo() {
+        String corVermelho = "#ffff0000";
+        String corAmarelo = "#FFFAFF5F";
+        Integer KmLembreteManutencao = 1000;
+        Integer milKm = 1000;
+        String msgAlertaTrocaOleo = "Troca de óleo ou filtro pendente!";
+        String msgAlertaTrocaPneu = "Troca de pneu, freio ou suspenção pendente!";
+        String msgAlertaRevisaoGeral = "Revisão geral pendente!";
+        String msgLembreteTrocaOleo = "Programe a troca de óleo ou filtro!";
+        String msgLembreteTrocaPneu = "Programe a troca de pneu, freio ou suspenção!";
+        String msgLembreteRevisaoGeral = "Programe a revisão geral!";
+
         if (veiculo != null){
             txtVeiculo.setText( veiculo.getNome());
+
+            Integer valorKmAbastecimento = 49500; // falta carregar.
+            txtKmAbastecimento.setText( valorKmAbastecimento.toString() );
+
+            txtDataAbastecimento.setText(DateUtilities.getDataAtualFormatada()); // falta carregar a data do abastecimento.
+
+            Integer valorTrocaFreio = veiculo.getTroca_oleo_filtro_anterior() + veiculo.getTroca_oleo_filtro_previsao() * milKm;
+            txtKmTrocaFreio.setText( valorTrocaFreio.toString() );
+
+            if (valorKmAbastecimento >= valorTrocaFreio){
+                txtKmTrocaFreio.setBackgroundColor( Color.parseColor(corVermelho));
+                Toast.makeText(this, msgAlertaTrocaOleo, Toast.LENGTH_LONG).show();
+            } else if (valorKmAbastecimento + KmLembreteManutencao >= valorTrocaFreio) {
+                txtKmTrocaFreio.setBackgroundColor(Color.parseColor(corAmarelo));
+                Toast.makeText(this, msgLembreteTrocaOleo, Toast.LENGTH_LONG).show();
+            }
+
+            Integer valorTrocaPneu = veiculo.getTroca_oleo_filtro_anterior() + veiculo.getTroca_pneu_freio_previsao() * milKm;
+            txtKmTrocaPneu.setText( valorTrocaPneu.toString() );
+
+            if (valorKmAbastecimento >= valorTrocaPneu){
+                txtKmTrocaPneu.setBackgroundColor( Color.parseColor(corVermelho));
+                Toast.makeText(this, msgAlertaTrocaPneu, Toast.LENGTH_LONG).show();
+            } else if (valorKmAbastecimento + KmLembreteManutencao >= valorTrocaPneu) {
+                txtKmTrocaPneu.setBackgroundColor(Color.parseColor(corAmarelo));
+                Toast.makeText(this, msgLembreteTrocaPneu, Toast.LENGTH_LONG).show();
+            }
+
+            Integer valorRevisaoGeral = veiculo.getRevisao_geral_anterior() + veiculo.getRevisao_geral_previsao() * milKm;
+            txtKmRevisaoGeral.setText( valorRevisaoGeral.toString() );
+
+            if (valorKmAbastecimento >= valorRevisaoGeral){
+                txtKmRevisaoGeral.setBackgroundColor( Color.parseColor(corVermelho));
+                Toast.makeText(this, msgAlertaRevisaoGeral, Toast.LENGTH_LONG).show();
+            } else if (valorKmAbastecimento + KmLembreteManutencao >= valorRevisaoGeral) {
+                txtKmRevisaoGeral.setBackgroundColor(Color.parseColor(corAmarelo));
+                Toast.makeText(this, msgLembreteRevisaoGeral, Toast.LENGTH_LONG).show();
+            }
         }
     }
+
 }
