@@ -1,200 +1,194 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="br.com.autocontrolbrasil.autocontrolbrasil.ManutencaoActivity"
-    android:id="@+id/ScrollViewPrincipal">
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/nome_veiculo"
-        android:id="@+id/lblVeiculo"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="10000dp">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtVeiculo"
-        android:layout_toRightOf="@+id/lblVeiculo"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/lblVeiculo" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/troca_oleo_filtro_descricao"
-        android:id="@+id/lblTituloTrocaOleo"
-        android:layout_below="@+id/txtVeiculo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/ultima_troca"
-        android:id="@+id/lblUltimaTrocaOleo"
-        android:layout_below="@+id/lblTituloTrocaOleo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/nome_veiculo"
+                    android:id="@+id/lblVeiculo" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtUltimaTrocaOleo"
-        android:layout_alignRight="@+id/txtVeiculo"
-        android:layout_alignEnd="@+id/txtVeiculo"
-        android:layout_below="@+id/lblTituloTrocaOleo"
-        android:layout_alignLeft="@+id/txtProximaTrocaOleo"
-        android:layout_alignStart="@+id/txtProximaTrocaOleo"
-        android:numeric="integer" />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtVeiculo"/>
+            </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/proxima_troca"
-        android:id="@+id/lblProximaTrocaOleo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/lblUltimaTrocaOleo"
-        android:layout_marginTop="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/troca_oleo_filtro_descricao"
+                android:id="@+id/lblTituloTrocaOleo"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtProximaTrocaOleo"
-        android:layout_toRightOf="@+id/lblProximaTrocaOleo"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/txtUltimaTrocaOleo"
-        android:enabled="false"
-        android:numeric="integer" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/troca_pneu_freio_descricao"
-        android:id="@+id/lblTituloTrocaPneu"
-        android:layout_below="@+id/lblProximaTrocaOleo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/ultima_troca"
+                    android:id="@+id/lblUltimaTrocaOleo"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/ultima_troca"
-        android:id="@+id/lblUltimaTrocaPneu"
-        android:layout_below="@+id/lblTituloTrocaPneu"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtUltimaTrocaOleo"
+                    android:numeric="integer" />
+            </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/proxima_troca"
-        android:id="@+id/lblProximaTrocaPneu"
-        android:layout_below="@+id/lblUltimaTrocaPneu"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtUltimaTrocaPneu"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/txtUltimaTrocaOleo"
-        android:layout_alignStart="@+id/txtUltimaTrocaOleo"
-        android:layout_below="@+id/lblTituloTrocaPneu"
-        android:numeric="integer" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/proxima_troca"
+                    android:id="@+id/lblProximaTrocaOleo"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtProximaTrocaPneu"
-        android:enabled="false"
-        android:numeric="integer"
-        android:layout_below="@+id/txtUltimaTrocaPneu"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/lblProximaTrocaPneu"
-        android:layout_toEndOf="@+id/lblProximaTrocaPneu" />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtProximaTrocaOleo"
+                    android:enabled="false"
+                    android:numeric="integer"/>
+            </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/troca_revisao_geral_descricao"
-        android:id="@+id/lblTituloRevisaoGeral"
-        android:layout_below="@+id/lblProximaTrocaPneu"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/troca_pneu_freio_descricao"
+                android:id="@+id/lblTituloTrocaPneu"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/ultima_troca"
-        android:id="@+id/lblUltimaRevisaoGeral"
-        android:layout_below="@+id/lblTituloRevisaoGeral"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/proxima_troca"
-        android:id="@+id/lblProximaRevisaoGeral"
-        android:layout_below="@+id/lblUltimaRevisaoGeral"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/ultima_troca"
+                    android:id="@+id/lblUltimaTrocaPneu"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtUltimaRevisaoGeral"
-        android:layout_below="@+id/lblTituloRevisaoGeral"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:numeric="integer"
-        android:layout_toRightOf="@+id/lblProximaRevisaoGeral"
-        android:layout_toEndOf="@+id/lblProximaRevisaoGeral" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtProximaRevisaoGeral"
-        android:enabled="false"
-        android:numeric="integer"
-        android:layout_below="@+id/txtUltimaRevisaoGeral"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/lblProximaRevisaoGeral"
-        android:layout_toEndOf="@+id/lblProximaRevisaoGeral" />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtUltimaTrocaPneu"
+                    android:numeric="integer" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/proxima_troca"
+                    android:id="@+id/lblProximaTrocaPneu"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtProximaTrocaPneu"
+                    android:enabled="false"
+                    android:numeric="integer" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/troca_revisao_geral_descricao"
+                android:id="@+id/lblTituloRevisaoGeral"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/ultima_troca"
+                    android:id="@+id/lblUltimaRevisaoGeral" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtUltimaRevisaoGeral"
+                    android:numeric="integer" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/proxima_troca"
+                    android:id="@+id/lblProximaRevisaoGeral" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtProximaRevisaoGeral"
+                    android:enabled="false"
+                    android:numeric="integer" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/acao_salvar"
+                android:id="@+id/btnSalvar"
+                android:onClick="salvarManutencao" />
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

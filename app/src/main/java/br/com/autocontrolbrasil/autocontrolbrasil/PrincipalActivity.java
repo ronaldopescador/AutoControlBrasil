@@ -57,7 +57,7 @@ public class PrincipalActivity extends AppCompatActivity{
         int id = item.getItemId();
 
         if (id == R.id.action_cadastrar_veiculo) {
-            cadastrarVeiculo();
+            veiculos();
             return true;
         } else if (id == R.id.action_abastecimentos){
             abastecimentos();
@@ -73,11 +73,18 @@ public class PrincipalActivity extends AppCompatActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if ((requestCode == requestCodeSelecao) && (resultCode > 0)) {
             abrirVeiculoVO(resultCode);
+        } else if (requestCode == requestCodeManutencao) {
+            abrirVeiculoVO(veiculo.getId());
+        } else if (requestCode == requestCodeVeiculo) {
+            abrirVeiculoVO(veiculo.getId());
+        } else if (requestCode == requestCodeAbastecimento) {
+            abrirVeiculoVO(veiculo.getId());
         }
     }
 
-    private void cadastrarVeiculo(){
+    private void veiculos(){
         Intent i = new Intent(this, CadastrarVeiculoActivity.class);
+        i.putExtra("ID_VEICULO", veiculo.getId());
         startActivityForResult(i, requestCodeVeiculo);
     }
 
@@ -88,7 +95,7 @@ public class PrincipalActivity extends AppCompatActivity{
 
     private void manutencao(){
         Intent i = new Intent(this, ManutencaoActivity.class);
-        i.putExtra("idVeiculo", veiculo.getId());
+        i.putExtra("ID_VEICULO", veiculo.getId());
         startActivityForResult(i, requestCodeManutencao);
     }
 
@@ -117,8 +124,9 @@ public class PrincipalActivity extends AppCompatActivity{
     private void carregarVeiculo() {
         String corVermelho = "#ffff0000";
         String corAmarelo = "#FFFAFF5F";
-        Integer KmLembreteManutencao = 1000;
         Integer milKm = 1000;
+        Integer KmAlertaManutencao = 0;
+        Integer KmLembreteManutencao = 1000;
         String msgAlertaTrocaOleo = "Troca de óleo ou filtro pendente!";
         String msgAlertaTrocaPneu = "Troca de pneu, freio ou suspenção pendente!";
         String msgAlertaRevisaoGeral = "Revisão geral pendente!";
@@ -137,34 +145,40 @@ public class PrincipalActivity extends AppCompatActivity{
             Integer valorTrocaFreio = veiculo.getTroca_oleo_filtro_anterior() + veiculo.getTroca_oleo_filtro_previsao() * milKm;
             txtKmTrocaFreio.setText( valorTrocaFreio.toString() );
 
-            if (valorKmAbastecimento >= valorTrocaFreio){
+            if (valorKmAbastecimento + KmAlertaManutencao >= valorTrocaFreio){
                 txtKmTrocaFreio.setBackgroundColor( Color.parseColor(corVermelho));
                 Toast.makeText(this, msgAlertaTrocaOleo, Toast.LENGTH_LONG).show();
             } else if (valorKmAbastecimento + KmLembreteManutencao >= valorTrocaFreio) {
                 txtKmTrocaFreio.setBackgroundColor(Color.parseColor(corAmarelo));
                 Toast.makeText(this, msgLembreteTrocaOleo, Toast.LENGTH_LONG).show();
+            } else {
+                txtKmTrocaFreio.setBackgroundColor(Color.TRANSPARENT);
             }
 
             Integer valorTrocaPneu = veiculo.getTroca_oleo_filtro_anterior() + veiculo.getTroca_pneu_freio_previsao() * milKm;
             txtKmTrocaPneu.setText( valorTrocaPneu.toString() );
 
-            if (valorKmAbastecimento >= valorTrocaPneu){
+            if (valorKmAbastecimento + KmAlertaManutencao >= valorTrocaPneu){
                 txtKmTrocaPneu.setBackgroundColor( Color.parseColor(corVermelho));
                 Toast.makeText(this, msgAlertaTrocaPneu, Toast.LENGTH_LONG).show();
             } else if (valorKmAbastecimento + KmLembreteManutencao >= valorTrocaPneu) {
                 txtKmTrocaPneu.setBackgroundColor(Color.parseColor(corAmarelo));
                 Toast.makeText(this, msgLembreteTrocaPneu, Toast.LENGTH_LONG).show();
+            }else {
+                txtKmTrocaPneu.setBackgroundColor(Color.TRANSPARENT);
             }
 
             Integer valorRevisaoGeral = veiculo.getRevisao_geral_anterior() + veiculo.getRevisao_geral_previsao() * milKm;
             txtKmRevisaoGeral.setText( valorRevisaoGeral.toString() );
 
-            if (valorKmAbastecimento >= valorRevisaoGeral){
+            if (valorKmAbastecimento + KmAlertaManutencao >= valorRevisaoGeral){
                 txtKmRevisaoGeral.setBackgroundColor( Color.parseColor(corVermelho));
                 Toast.makeText(this, msgAlertaRevisaoGeral, Toast.LENGTH_LONG).show();
             } else if (valorKmAbastecimento + KmLembreteManutencao >= valorRevisaoGeral) {
                 txtKmRevisaoGeral.setBackgroundColor(Color.parseColor(corAmarelo));
                 Toast.makeText(this, msgLembreteRevisaoGeral, Toast.LENGTH_LONG).show();
+            }else {
+                txtKmRevisaoGeral.setBackgroundColor(Color.TRANSPARENT);
             }
         }
     }

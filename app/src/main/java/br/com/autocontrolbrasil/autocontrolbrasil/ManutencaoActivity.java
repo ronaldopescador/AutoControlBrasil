@@ -42,45 +42,26 @@ public class ManutencaoActivity extends AppCompatActivity {
 
         Intent i = getIntent();
 
-        Integer idVeiculo = i.getIntExtra("idVeiculo", 0);
+        Integer idVeiculo = i.getIntExtra("ID_VEICULO", 0);
 
         carregarVeiculo(idVeiculo);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_manutencao, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onStop() {
-        veiculo.setTroca_oleo_filtro_anterior( NumberUtilities.parseInt(txtUltimaTrocaOleo.getText().toString()));
-        veiculo.setTroca_pneu_freio_anterior( NumberUtilities.parseInt(txtUltimaTrocaPneu.getText().toString()));
-        veiculo.setRevisao_geral_anterior(NumberUtilities.parseInt(txtUltimaRevisaoGeral.getText().toString()));
-
-        dao.salvar(veiculo);
-
-        setResult(RESULT_OK);
-
-        finish();
-        super.onStop();
     }
 
     private void carregarVeiculo(Integer idVeiculo){
@@ -103,6 +84,21 @@ public class ManutencaoActivity extends AppCompatActivity {
         } else {
             finish();
         }
+    }
+    private void salvar(){
+        veiculo.setTroca_oleo_filtro_anterior( NumberUtilities.parseInt(txtUltimaTrocaOleo.getText().toString()));
+        veiculo.setTroca_pneu_freio_anterior( NumberUtilities.parseInt(txtUltimaTrocaPneu.getText().toString()));
+        veiculo.setRevisao_geral_anterior(NumberUtilities.parseInt(txtUltimaRevisaoGeral.getText().toString()));
+
+        dao.salvar(veiculo);
+
+        setResult(RESULT_OK);
+
+        finish();
+    }
+
+    public void salvarManutencao(View v){
+        salvar();
     }
 /*
     public void atualizarTela(View v){
