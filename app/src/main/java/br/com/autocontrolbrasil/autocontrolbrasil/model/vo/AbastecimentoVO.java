@@ -10,7 +10,6 @@ public class AbastecimentoVO {
     private Double kmAtual;
     private Double volume;
     private Double valorTotal;
-    private Double kmMedia;
 
     public int getId() {
         return id;
@@ -53,10 +52,11 @@ public class AbastecimentoVO {
     }
 
     public Double getKmMedia() {
-        return kmMedia;
-    }
+        if (volume > 0) {
+            return (kmAtual - kmAnterior) / volume;
+        } else {
+            return new Double(0);
+        }
 
-    public void setKmMedia(Double kmMedia) {
-        this.kmMedia = kmMedia;
     }
 }

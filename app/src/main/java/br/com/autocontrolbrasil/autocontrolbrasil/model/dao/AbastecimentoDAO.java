@@ -24,7 +24,7 @@ public class AbastecimentoDAO extends BaseDAO {
         super(context);
     }
 
-    public void salvar(AbastecimentoVO abastecimento){
+    public void salvar(AbastecimentoVO abastecimento) {
         SQLiteDatabase db = helper.getWritableDatabase();
 
         ContentValues valores = new ContentValues();
@@ -40,7 +40,25 @@ public class AbastecimentoDAO extends BaseDAO {
         db.close();
     }
 
-    public Cursor listar(){
+    public AbastecimentoVO ultimoAbastecimento() {
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.query(tabela, new String[]{"max(" + km_atual + ")"}, null, null, null, null, null);
+
+        AbastecimentoVO abastecimento = new AbastecimentoVO();
+        if (cursor.moveToFirst()) {
+            abastecimento.setKmAnterior(cursor.getDouble(0));
+        }
+
+        return abastecimento;
+    };
+
+    public void apagarRegistro(long id){
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        db.execSQL("delete from " + tabela + " where " + this.id + "= " + id);
+    }
+
+    public Cursor listar() {
         SQLiteDatabase db = helper.getReadableDatabase();
         return db.query(tabela, new String[]{id, km_anterior, km_atual, volume, valor_total, km_media}, null, null, null, null, null);
     }

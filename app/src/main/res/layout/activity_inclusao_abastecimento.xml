@@ -51,7 +51,7 @@
         />
 
     <EditText
-        android:id="@+id/txtLitros"
+        android:id="@+id/txtVolume"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
