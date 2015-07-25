@@ -127,12 +127,6 @@ public class PrincipalActivity extends AppCompatActivity{
         Integer milKm = 1000;
         Integer KmAlertaManutencao = 0;
         Integer KmLembreteManutencao = 1000;
-        String msgAlertaTrocaOleo = "Troca de óleo ou filtro pendente!";
-        String msgAlertaTrocaPneu = "Troca de pneu, freio ou suspenção pendente!";
-        String msgAlertaRevisaoGeral = "Revisão geral pendente!";
-        String msgLembreteTrocaOleo = "Programe a troca de óleo ou filtro!";
-        String msgLembreteTrocaPneu = "Programe a troca de pneu, freio ou suspenção!";
-        String msgLembreteRevisaoGeral = "Programe a revisão geral!";
 
         if (veiculo != null){
             txtVeiculo.setText( veiculo.getNome());
