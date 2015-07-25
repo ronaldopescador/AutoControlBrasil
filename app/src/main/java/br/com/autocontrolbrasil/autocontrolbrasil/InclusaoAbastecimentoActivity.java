@@ -1,52 +1,85 @@
 package br.com.autocontrolbrasil.autocontrolbrasil;
 
+import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.AbastecimentoDAO;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.vo.AbastecimentoVO;
 
-
 public class InclusaoAbastecimentoActivity extends AppCompatActivity {
+
+    AbastecimentoVO abastecimento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_inclusao_abastecimento);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_inclusao_abastecimento, menu);
-        return true;
-    }
+        Intent i = getIntent();
+        abastecimento = new AbastecimentoVO();
+        abastecimento.setKmAnterior(i.getDoubleExtra("KMANTERIOR", 0));
+        abastecimento.setKmAtual(new Double(0));
+        abastecimento.setVolume(new Double(0));
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        final EditText txtMedia = (EditText) findViewById(R.id.txtMedia);
+        final EditText txtVolume = (EditText) findViewById(R.id.txtVolume);
+        final EditText txtKmAtual = (EditText) findViewById(R.id.txtKmAtual);
+        final EditText txtKmAnterior = (EditText) findViewById(R.id.txtKmAnterior);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        txtKmAnterior.setText(abastecimento.getKmAnterior().toString());
 
-        return super.onOptionsItemSelected(item);
+        TextWatcher watcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if (txtKmAnterior.getText().length() != 0) {
+                    abastecimento.setKmAnterior(Double.parseDouble(txtKmAnterior.getText().toString()));
+                }
+                if (txtKmAtual.getText().length() != 0) {
+                    abastecimento.setKmAtual(Double.parseDouble(txtKmAtual.getText().toString()));
+                }
+                if (txtVolume.getText().length() != 0) {
+                    abastecimento.setVolume(Double.parseDouble(txtVolume.getText().toString()));
+                }
+
+                NumberFormat format = new DecimalFormat("#.#");
+                txtMedia.setText(format.format(abastecimento.getKmMedia()));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+
+        txtVolume.addTextChangedListener(watcher);
+        txtKmAtual.addTextChangedListener(watcher);
+        txtKmAnterior.addTextChangedListener(watcher);
     }
 
     public void salvar(View v) {
-        EditText txtKmAtual = (EditText) findViewById(R.id.txtKmAtual);
+        EditText txtValorTotal = (EditText) findViewById(R.id.txtValorTotal);
 
-        AbastecimentoVO abastecimento = new AbastecimentoVO();
-
-        abastecimento.setKmAtual(Double.parseDouble(txtKmAtual.getText().toString()));
+        if (txtValorTotal.getText().length() != 0) {
+            abastecimento.setValorTotal(Double.parseDouble(txtValorTotal.getText().toString()));
+        }
 
         AbastecimentoDAO dao = new AbastecimentoDAO(this);
 
@@ -56,4 +89,5 @@ public class InclusaoAbastecimentoActivity extends AppCompatActivity {
 
         finish();
     }
+
 }

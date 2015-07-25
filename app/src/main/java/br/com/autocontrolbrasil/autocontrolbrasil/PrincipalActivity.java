@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import br.com.autocontrolbrasil.autocontrolbrasil.adapter.ListaPrecoAdapter;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.VeiculoDAO;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.vo.VeiculoVO;
 import br.com.autocontrolbrasil.autocontrolbrasil.utilities.DateUtilities;
@@ -65,6 +66,9 @@ public class PrincipalActivity extends AppCompatActivity{
         } else if (id == R.id.action_manutencao){
             manutencao();
             return true;
+        } else if (id == R.id.action_precos){
+            precos();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -91,6 +95,11 @@ public class PrincipalActivity extends AppCompatActivity{
     private void abastecimentos(){
         Intent i = new Intent(this, ListaAbastecimentosActivity.class);
         startActivityForResult(i, requestCodeAbastecimento);
+    }
+
+    private void precos(){
+        Intent i = new Intent(this, ListaPrecosActivity.class);
+        startActivityForResult(i, 0);
     }
 
     private void manutencao(){

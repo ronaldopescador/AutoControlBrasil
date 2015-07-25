@@ -6,6 +6,11 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import br.com.autocontrolbrasil.autocontrolbrasil.adapter.ListaAbastecimentosAdapter;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.AbastecimentoDAO;
@@ -29,6 +34,17 @@ public class ListaAbastecimentosActivity extends ListActivity {
 
         setListAdapter(adapter);
 
+        AdapterView.OnItemLongClickListener listener = new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                dao.apagarRegistro(id);
+                onActivityResult(0, 0, null);
+                return true;
+            }
+        };
+
+        //ListView list = (ListView) findViewById(android.R.id.list);
+        getListView().setOnItemLongClickListener(listener);
     }
 
     @Override
@@ -46,7 +62,7 @@ public class ListaAbastecimentosActivity extends ListActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_novo_abastecimento) {
-            novoAbastecimento();
+            novoAbastecimento(dao.ultimoAbastecimento().getKmAnterior());
             return true;
         }
 
@@ -65,9 +81,11 @@ public class ListaAbastecimentosActivity extends ListActivity {
         adapter.notifyDataSetChanged();
     }
 
-    private void novoAbastecimento(){
+    private void novoAbastecimento(double kmAnterior){
         Intent i = new Intent(this, InclusaoAbastecimentoActivity.class);
+
+        i.putExtra("KMANTERIOR", kmAnterior);
+
         startActivityForResult(i, 1);
     }
-
 }

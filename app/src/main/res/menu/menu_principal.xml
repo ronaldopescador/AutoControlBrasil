@@ -17,4 +17,9 @@
         android:orderInCategory="100"
         android:title="@string/menu_manutencao"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_precos"
+        android:orderInCategory="100"
+        android:title="Preços"
+        app:showAsAction="never" />
 </menu>
