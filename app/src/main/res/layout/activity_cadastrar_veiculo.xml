@@ -61,7 +61,8 @@
                 android:layout_alignTop="@+id/lblAno"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:numeric="decimal" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -114,7 +115,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_below="@+id/skbAno"
                 android:layout_toRightOf="@+id/lblTrocaOleo"
-                android:layout_toEndOf="@+id/lblTrocaOleo" />
+                android:layout_toEndOf="@+id/lblTrocaOleo"
+                android:numeric="decimal" />
 
             <SeekBar
                 android:layout_width="wrap_content"
@@ -147,7 +149,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_below="@+id/skbTrocaOleo"
                 android:layout_toRightOf="@+id/lblTrocaPneu"
-                android:layout_toEndOf="@+id/lblTrocaPneu" />
+                android:layout_toEndOf="@+id/lblTrocaPneu"
+                android:numeric="decimal" />
 
             <SeekBar
                 android:layout_width="wrap_content"
@@ -180,7 +183,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_below="@+id/skbTrocaPneu"
                 android:layout_toRightOf="@+id/lblRevisaoGeral"
-                android:layout_toEndOf="@+id/lblTrocaPneu" />
+                android:layout_toEndOf="@+id/lblTrocaPneu"
+                android:numeric="decimal" />
 
             <SeekBar
                 android:layout_width="wrap_content"
