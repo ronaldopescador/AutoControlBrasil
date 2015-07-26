@@ -80,7 +80,7 @@ public class MapaPostoActivity extends FragmentActivity {
         mMap.setMyLocationEnabled(true);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(alpha, 16));
 
-        DecimalFormat df = new DecimalFormat("#0.00");
+        DecimalFormat df = new DecimalFormat("#0.000");
 
         mMap.addMarker(new MarkerOptions()
                 .title(preco.getNome())

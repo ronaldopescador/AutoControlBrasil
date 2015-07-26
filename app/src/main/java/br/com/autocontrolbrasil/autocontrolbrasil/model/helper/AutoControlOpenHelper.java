@@ -35,9 +35,10 @@ public class AutoControlOpenHelper extends SQLiteOpenHelper {
 
         sql.append("create table abastecimento ( ");
         sql.append("       _id INTEGER PRIMARY KEY, ");
-        sql.append("       km_anterior REAL, ");
-        sql.append("       km_atual REAL, ");
+        sql.append("       km_anterior INTEGER, ");
+        sql.append("       km_atual INTEGER, ");
         sql.append("       volume REAL, ");
+        sql.append("       data INTEGER, ");
         sql.append("       valor_total REAL, ");
         sql.append("       km_media REAL ");
         sql.append("       )");
