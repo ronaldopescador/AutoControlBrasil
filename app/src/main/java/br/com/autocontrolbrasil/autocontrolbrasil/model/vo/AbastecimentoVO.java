@@ -6,9 +6,10 @@ package br.com.autocontrolbrasil.autocontrolbrasil.model.vo;
 public class AbastecimentoVO {
 
     private int id;
-    private Double kmAnterior;
-    private Double kmAtual;
+    private Long kmAnterior;
+    private Long kmAtual;
     private Double volume;
+    private Long data;
     private Double valorTotal;
 
     public int getId() {
@@ -19,24 +20,32 @@ public class AbastecimentoVO {
         this.id = id;
     }
 
-    public Double getKmAnterior() {
+    public Long getKmAnterior() {
         return kmAnterior;
     }
 
-    public void setKmAnterior(Double kmAnterior) {
+    public void setKmAnterior(Long kmAnterior) {
         this.kmAnterior = kmAnterior;
     }
 
-    public Double getKmAtual() {
+    public Long getKmAtual() {
         return kmAtual;
     }
 
-    public void setKmAtual(Double kmAtual) {
+    public void setKmAtual(Long kmAtual) {
         this.kmAtual = kmAtual;
     }
 
     public Double getVolume() {
         return volume;
+    }
+
+    public Long getData() {
+        return data;
+    }
+
+    public void setData(Long data) {
+        this.data = data;
     }
 
     public void setVolume(Double volume) {
@@ -55,7 +64,7 @@ public class AbastecimentoVO {
         if (volume > 0) {
             return (kmAtual - kmAnterior) / volume;
         } else {
-            return new Double(0);
+            return 0.0;
         }
 
     }

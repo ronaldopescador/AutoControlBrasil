@@ -37,10 +37,12 @@ public class ListaPrecoAdapter extends ArrayAdapter<PrecoVO> {
         PrecoVO preco = precos.get(position);
 
         TextView lblPosto = (TextView) item.findViewById(R.id.lblPosto);
+        TextView lblEndereco = (TextView) item.findViewById(R.id.lblEndereco);
         TextView lblPreco = (TextView) item.findViewById(R.id.lblPreco);
 
         lblPosto.setText(preco.getNome());
-        DecimalFormat df = new DecimalFormat("#0.00");
+        lblEndereco.setText(preco.getEndereco());
+        DecimalFormat df = new DecimalFormat("#0.000");
         lblPreco.setText(df.format(preco.getGasolina()));
 
         return item;

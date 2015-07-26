@@ -5,22 +5,41 @@
 
     <TextView
         android:id="@+id/lblPosto"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="Nota 10"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:text="Posto"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_toStartOf="@+id/lblPreco"
+        android:layout_marginLeft="3dp"
+        android:textColor="#ff000000" />
 
     <TextView
         android:id="@+id/lblPreco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/lblPosto"
         android:text="1,00"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="3dp"
+        android:layout_marginLeft="3dp"
+        android:autoText="false"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Endereço"
+        android:id="@+id/lblEndereco"
+        android:layout_below="@+id/lblPosto"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="3dp" />
 
 </RelativeLayout>

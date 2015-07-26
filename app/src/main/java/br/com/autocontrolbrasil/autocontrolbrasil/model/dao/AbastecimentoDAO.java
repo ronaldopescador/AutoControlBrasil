@@ -17,6 +17,7 @@ public class AbastecimentoDAO extends BaseDAO {
     private static final String km_anterior = "km_anterior";
     private static final String km_atual = "km_atual";
     private static final String volume = "volume";
+    private static final String data = "data";
     private static final String valor_total = "valor_total";
     private static final String km_media = "km_media";
 
@@ -32,6 +33,7 @@ public class AbastecimentoDAO extends BaseDAO {
         valores.put(km_anterior, abastecimento.getKmAnterior());
         valores.put(km_atual, abastecimento.getKmAtual());
         valores.put(volume, abastecimento.getVolume());
+        valores.put(data, abastecimento.getData());
         valores.put(valor_total, abastecimento.getValorTotal());
         valores.put(km_media, abastecimento.getKmMedia());
 
@@ -46,11 +48,11 @@ public class AbastecimentoDAO extends BaseDAO {
 
         AbastecimentoVO abastecimento = new AbastecimentoVO();
         if (cursor.moveToFirst()) {
-            abastecimento.setKmAnterior(cursor.getDouble(0));
+            abastecimento.setKmAnterior(cursor.getLong(0));
         }
 
         return abastecimento;
-    };
+    }
 
     public void apagarRegistro(long id){
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -60,7 +62,7 @@ public class AbastecimentoDAO extends BaseDAO {
 
     public Cursor listar() {
         SQLiteDatabase db = helper.getReadableDatabase();
-        return db.query(tabela, new String[]{id, km_anterior, km_atual, volume, valor_total, km_media}, null, null, null, null, null);
+        return db.query(tabela, new String[]{id, km_anterior, km_atual, volume, data, valor_total, km_media}, null, null, null, null, null);
     }
 
 }

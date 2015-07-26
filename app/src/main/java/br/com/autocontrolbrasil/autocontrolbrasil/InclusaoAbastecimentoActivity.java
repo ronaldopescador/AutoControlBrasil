@@ -13,6 +13,7 @@ import android.widget.EditText;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Date;
 
 import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.AbastecimentoDAO;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.vo.AbastecimentoVO;
@@ -29,9 +30,9 @@ public class InclusaoAbastecimentoActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         abastecimento = new AbastecimentoVO();
-        abastecimento.setKmAnterior(i.getDoubleExtra("KMANTERIOR", 0));
-        abastecimento.setKmAtual(new Double(0));
-        abastecimento.setVolume(new Double(0));
+        abastecimento.setKmAnterior(i.getLongExtra("KMANTERIOR", 0));
+        abastecimento.setKmAtual((long) 0);
+        abastecimento.setVolume((double) 0);
 
         final EditText txtMedia = (EditText) findViewById(R.id.txtMedia);
         final EditText txtVolume = (EditText) findViewById(R.id.txtVolume);
@@ -50,10 +51,10 @@ public class InclusaoAbastecimentoActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if (txtKmAnterior.getText().length() != 0) {
-                    abastecimento.setKmAnterior(Double.parseDouble(txtKmAnterior.getText().toString()));
+                    abastecimento.setKmAnterior(Long.parseLong(txtKmAnterior.getText().toString()));
                 }
                 if (txtKmAtual.getText().length() != 0) {
-                    abastecimento.setKmAtual(Double.parseDouble(txtKmAtual.getText().toString()));
+                    abastecimento.setKmAtual(Long.parseLong(txtKmAtual.getText().toString()));
                 }
                 if (txtVolume.getText().length() != 0) {
                     abastecimento.setVolume(Double.parseDouble(txtVolume.getText().toString()));
@@ -80,6 +81,8 @@ public class InclusaoAbastecimentoActivity extends AppCompatActivity {
         if (txtValorTotal.getText().length() != 0) {
             abastecimento.setValorTotal(Double.parseDouble(txtValorTotal.getText().toString()));
         }
+
+        abastecimento.setData(new Date().getTime());
 
         AbastecimentoDAO dao = new AbastecimentoDAO(this);
 

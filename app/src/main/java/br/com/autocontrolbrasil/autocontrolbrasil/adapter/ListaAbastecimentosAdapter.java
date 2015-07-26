@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import br.com.autocontrolbrasil.autocontrolbrasil.R;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.AbastecimentoDAO;
 
@@ -38,8 +42,22 @@ public class ListaAbastecimentosAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         TextView lblKmAtual = (TextView) view.findViewById(R.id.lblKmAtual);
+        TextView lblVolume = (TextView) view.findViewById(R.id.lblVolume);
+        TextView lblKmMedia = (TextView) view.findViewById(R.id.lblKmMedia);
+        TextView lblData = (TextView) view.findViewById(R.id.lblData);
 
         String kmAtual = cursor.getString(cursor.getColumnIndex("km_atual"));
+        String Volume = cursor.getString(cursor.getColumnIndex("volume"));
+        String KmMedia = cursor.getString(cursor.getColumnIndex("km_media"));
+
+        Long timeData = cursor.getLong(cursor.getColumnIndex("data"));
+        Date data = new Date(timeData);
+
+        DateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
+
         lblKmAtual.setText(kmAtual);
+        lblVolume.setText(Volume);
+        lblKmMedia.setText(KmMedia);
+        lblData.setText(dtf.format(data));
     }
 }
