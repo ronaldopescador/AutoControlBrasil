@@ -136,6 +136,12 @@ public class PrincipalActivity extends AppCompatActivity{
         Integer milKm = 1000;
         Integer KmAlertaManutencao = 0;
         Integer KmLembreteManutencao = 1000;
+        String msgAlertaTrocaOleo = "Troca de óleo ou filtro pendente!";
+        String msgAlertaTrocaPneu = "Troca de pneu, freio ou suspenção pendente!";
+        String msgAlertaRevisaoGeral = "Revisão geral pendente!";
+        String msgLembreteTrocaOleo = "Programe a troca de óleo ou filtro!";
+        String msgLembreteTrocaPneu = "Programe a troca de pneu, freio ou suspenção!";
+        String msgLembreteRevisaoGeral = "Programe a revisão geral!";
 
         if (veiculo != null){
             txtVeiculo.setText( veiculo.getNome());
@@ -150,8 +156,10 @@ public class PrincipalActivity extends AppCompatActivity{
 
             if (valorKmAbastecimento + KmAlertaManutencao >= valorTrocaFreio){
                 txtKmTrocaFreio.setBackgroundColor( Color.parseColor(corVermelho));
+                Toast.makeText(this, msgAlertaTrocaOleo, Toast.LENGTH_LONG).show();
             } else if (valorKmAbastecimento + KmLembreteManutencao >= valorTrocaFreio) {
                 txtKmTrocaFreio.setBackgroundColor(Color.parseColor(corAmarelo));
+                Toast.makeText(this, msgLembreteTrocaOleo, Toast.LENGTH_LONG).show();
             } else {
                 txtKmTrocaFreio.setBackgroundColor(Color.TRANSPARENT);
             }
@@ -161,8 +169,10 @@ public class PrincipalActivity extends AppCompatActivity{
 
             if (valorKmAbastecimento + KmAlertaManutencao >= valorTrocaPneu){
                 txtKmTrocaPneu.setBackgroundColor( Color.parseColor(corVermelho));
+                Toast.makeText(this, msgAlertaTrocaPneu, Toast.LENGTH_LONG).show();
             } else if (valorKmAbastecimento + KmLembreteManutencao >= valorTrocaPneu) {
                 txtKmTrocaPneu.setBackgroundColor(Color.parseColor(corAmarelo));
+                Toast.makeText(this, msgLembreteTrocaPneu, Toast.LENGTH_LONG).show();
             }else {
                 txtKmTrocaPneu.setBackgroundColor(Color.TRANSPARENT);
             }
@@ -172,8 +182,10 @@ public class PrincipalActivity extends AppCompatActivity{
 
             if (valorKmAbastecimento + KmAlertaManutencao >= valorRevisaoGeral){
                 txtKmRevisaoGeral.setBackgroundColor( Color.parseColor(corVermelho));
+                Toast.makeText(this, msgAlertaRevisaoGeral, Toast.LENGTH_LONG).show();
             } else if (valorKmAbastecimento + KmLembreteManutencao >= valorRevisaoGeral) {
                 txtKmRevisaoGeral.setBackgroundColor(Color.parseColor(corAmarelo));
+                Toast.makeText(this, msgLembreteRevisaoGeral, Toast.LENGTH_LONG).show();
             }else {
                 txtKmRevisaoGeral.setBackgroundColor(Color.TRANSPARENT);
             }
