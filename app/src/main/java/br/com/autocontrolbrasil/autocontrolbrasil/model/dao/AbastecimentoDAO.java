@@ -44,12 +44,15 @@ public class AbastecimentoDAO extends BaseDAO {
 
     public AbastecimentoVO ultimoAbastecimento() {
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.query(tabela, new String[]{"max(" + km_atual + ")"}, null, null, null, null, null);
+        Cursor cursor = db.query(tabela, new String[]{"max(" + km_atual + "), data"}, null, null, null, null, null);
 
         AbastecimentoVO abastecimento = new AbastecimentoVO();
         if (cursor.moveToFirst()) {
             abastecimento.setKmAnterior(cursor.getLong(0));
+            abastecimento.setData(cursor.getLong(1));
         }
+
+        cursor.close();
 
         return abastecimento;
     }

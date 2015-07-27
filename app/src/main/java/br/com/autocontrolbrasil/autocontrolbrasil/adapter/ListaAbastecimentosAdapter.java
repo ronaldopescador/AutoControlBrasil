@@ -8,13 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import br.com.autocontrolbrasil.autocontrolbrasil.R;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.AbastecimentoDAO;
+import br.com.autocontrolbrasil.autocontrolbrasil.utilities.DateUtilities;
 
 /**
  * Created by Ronaldo on 20/07/2015.
@@ -52,15 +50,13 @@ public class ListaAbastecimentosAdapter extends CursorAdapter {
         Double KmMedia = cursor.getDouble(cursor.getColumnIndex("km_media"));
 
         Long timeData = cursor.getLong(cursor.getColumnIndex("data"));
-        Date data = new Date(timeData);
 
-        DateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
         DecimalFormat formatVolume = new DecimalFormat("#0.000");
         DecimalFormat formatKmMedia = new DecimalFormat("#0.0");
 
         lblKmAtual.setText(kmAtual + " Km");
         lblVolume.setText(formatVolume.format(Volume) + " Litros");
         lblKmMedia.setText(formatKmMedia.format(KmMedia) + " Km/Litros" );
-        lblData.setText(dtf.format(data));
+        lblData.setText(DateUtilities.formatarData(timeData));
     }
 }
