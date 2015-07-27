@@ -1,5 +1,7 @@
 package br.com.autocontrolbrasil.autocontrolbrasil.task;
 
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.view.View;
 
@@ -19,8 +21,8 @@ import br.com.autocontrolbrasil.autocontrolbrasil.model.vo.PrecoVO;
 /**
  * Created by Ronaldo on 23/07/2015.
  */
-public class ConsultaPrecoTask extends AsyncTask<String, Void, List<PrecoVO> > {
-
+public class ConsultaPrecoTask extends AsyncTask<Location, Void, List<PrecoVO> > {
+//Location location
     private ListaPrecosActivity activity;
 
     public ConsultaPrecoTask(ListaPrecosActivity activity){
@@ -28,12 +30,28 @@ public class ConsultaPrecoTask extends AsyncTask<String, Void, List<PrecoVO> > {
     }
 
     @Override
-    protected List<PrecoVO> doInBackground(String... params) {
+    protected List<PrecoVO> doInBackground(Location... params) {
 
         List<PrecoVO> precos = new ArrayList<PrecoVO>();
 
+        Double swlat;
+        Double swlng;
+        Double nelat;
+        Double nelng;
+        String pos;
+
         try{
-            URL ws = new URL("http://www.precodoscombustiveis.com.br/mapa/atualiza?swlat=-27.139131250167814&swlng=-52.6622192331543&nelat=-27.062724314030632&nelng=-52.56917876684571&zoom=13");
+            swlat = (params[0].getLatitude()) - 0.1;
+            swlng = (params[0].getLongitude()) - 0.1;
+            nelat = (params[0].getLatitude()) + 0.1;
+            nelng = (params[0].getLongitude()) + 0.1;
+            pos = "swlat=" + swlat.toString() +
+                  "&swlng=" + swlng.toString() +
+                  "&nelat=" + nelat.toString() +
+                  "&nelng=" + nelng.toString();
+
+            //URL ws = new URL("http://www.precodoscombustiveis.com.br/mapa/atualiza?swlat=-27.139131250167814&swlng=-52.6622192331543&nelat=-27.062724314030632&nelng=-52.56917876684571&zoom=13");
+            URL ws = new URL("http://www.precodoscombustiveis.com.br/mapa/atualiza?" + pos + "&zoom=13");
 
             HttpURLConnection con  = (HttpURLConnection) ws.openConnection();
 
