@@ -1,10 +1,13 @@
 package br.com.autocontrolbrasil.autocontrolbrasil;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -106,8 +109,12 @@ public class CadastrarVeiculoActivity extends AppCompatActivity implements SeekB
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == codigoRequisicao){
 
-            ImageView imagem = (ImageView) findViewById(R.id.imgFoto);
-            imagem.setImageURI(uriFoto);
+            try {
+                Bitmap bmp = BitmapFactory.decodeStream(getContentResolver().openInputStream(uriFoto));
+                imgFoto.setImageBitmap(bmp);
+            } catch (Exception e){
+                Log.e("Auto Control Brasil", "Erro ao carregar foto. " + e.toString());
+            }
         }
     }
 
@@ -126,7 +133,7 @@ public class CadastrarVeiculoActivity extends AppCompatActivity implements SeekB
 
         dao.salvar(veiculo);
 
-        setResult(RESULT_OK);
+        setResult(veiculo.getId());
 
         finish();
     }

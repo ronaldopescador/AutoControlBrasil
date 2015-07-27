@@ -2,6 +2,7 @@ package br.com.autocontrolbrasil.autocontrolbrasil.utilities;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -18,7 +19,7 @@ public class ImageUtilities {
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 
         return stream.toByteArray();
     }

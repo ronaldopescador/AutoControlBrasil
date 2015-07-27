@@ -208,8 +208,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:onClick="novaFoto"
-                android:background="@android:drawable/ic_menu_camera" />
+                android:onClick="novaFoto" />
 
             <Button
                 android:layout_width="wrap_content"

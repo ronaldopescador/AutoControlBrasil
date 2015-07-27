@@ -88,7 +88,7 @@ public class InclusaoAbastecimentoActivity extends AppCompatActivity {
 
         dao.salvar(abastecimento);
 
-        setResult(RESULT_OK);
+        //setResult(abastecimento.getId());
 
         finish();
     }

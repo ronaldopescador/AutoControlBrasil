@@ -92,7 +92,7 @@ public class ManutencaoActivity extends AppCompatActivity {
 
         dao.salvar(veiculo);
 
-        setResult(RESULT_OK);
+        setResult(veiculo.getId());
 
         finish();
     }
