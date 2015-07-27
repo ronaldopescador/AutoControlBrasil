@@ -16,10 +16,10 @@ import br.com.autocontrolbrasil.autocontrolbrasil.utilities.DateUtilities;
 
 
 public class PrincipalActivity extends AppCompatActivity{
-    private static final Integer requestCodeSelecao = 100;
-    private static final Integer requestCodeVeiculo = 101;
-    private static final Integer requestCodeAbastecimento = 102;
-    private static final Integer requestCodeManutencao = 103;
+    private static final Integer requestCodeSelecao = 1;
+    private static final Integer requestCodeVeiculo = 2;
+    private static final Integer requestCodeAbastecimento = 3;
+    private static final Integer requestCodeManutencao = 4;
     private VeiculoDAO dao;
     private VeiculoVO veiculo = null;
 
@@ -77,12 +77,12 @@ public class PrincipalActivity extends AppCompatActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if ((requestCode == requestCodeSelecao) && (resultCode > 0)) {
             abrirVeiculoVO(resultCode);
-        } else if (requestCode == requestCodeManutencao) {
-            abrirVeiculoVO(veiculo.getId());
-        } else if (requestCode == requestCodeVeiculo) {
-            abrirVeiculoVO(veiculo.getId());
-        } else if (requestCode == requestCodeAbastecimento) {
-            abrirVeiculoVO(veiculo.getId());
+        } else if ((requestCode == requestCodeManutencao) && (resultCode > 0)){
+            abrirVeiculoVO(resultCode);
+        } else if ((requestCode == requestCodeVeiculo) && (resultCode > 0)){
+            abrirVeiculoVO(resultCode);
+        } else if ((requestCode == requestCodeAbastecimento) && (resultCode > 0)){
+            abrirVeiculoVO(resultCode);
         }
     }
 
@@ -94,7 +94,7 @@ public class PrincipalActivity extends AppCompatActivity{
 
     private void abastecimentos(){
         Intent i = new Intent(this, ListaAbastecimentosActivity.class);
-        startActivityForResult(i, 0/*requestCodeAbastecimento*/);
+        startActivityForResult(i, requestCodeAbastecimento);
     }
 
     private void precos(){
@@ -110,9 +110,7 @@ public class PrincipalActivity extends AppCompatActivity{
 
     private void selecionarVeiculoVO(Boolean autoSelecao){
         Intent i = new Intent(this, SelecionarVeiculoActivity.class);
-
         i.putExtra("AUTO_SELECAO", autoSelecao);
-
         startActivityForResult(i, requestCodeSelecao);
 }
 
@@ -145,8 +143,8 @@ public class PrincipalActivity extends AppCompatActivity{
 
             Long kmUltimoAbastecimento = (long) 0;
             Long dataUltimoAbastecimento = (long) 0;
-            if (abastecimento.getKmAtual() != null) {
-                kmUltimoAbastecimento = abastecimento.getKmAtual();
+            if (abastecimento.getKmAnterior() != null) {
+                kmUltimoAbastecimento = abastecimento.getKmAnterior();
                 dataUltimoAbastecimento = abastecimento.getData();
             }
 
