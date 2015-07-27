@@ -9,10 +9,11 @@ public class DateUtilities {
         DateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
         return df.format(new Date());
     }
-    public static String getDataAtualFormatada() {
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        return df.format(new Date());
-    }
 
+    public static String formatarData(Long longData){
+        Date data = new Date(longData);
+        DateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
+        return dtf.format(data);
+    }
 
 }

@@ -7,10 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import br.com.autocontrolbrasil.autocontrolbrasil.adapter.ListaPrecoAdapter;
+import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.AbastecimentoDAO;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.dao.VeiculoDAO;
+import br.com.autocontrolbrasil.autocontrolbrasil.model.vo.AbastecimentoVO;
 import br.com.autocontrolbrasil.autocontrolbrasil.model.vo.VeiculoVO;
 import br.com.autocontrolbrasil.autocontrolbrasil.utilities.DateUtilities;
 
@@ -140,17 +140,28 @@ public class PrincipalActivity extends AppCompatActivity{
         if (veiculo != null){
             txtVeiculo.setText( veiculo.getNome());
 
-            Integer valorKmAbastecimento = 49500; // falta carregar.
-            txtKmAbastecimento.setText( valorKmAbastecimento.toString() );
+            AbastecimentoDAO abastecimentoDAO = new AbastecimentoDAO(this);
+            AbastecimentoVO abastecimento = abastecimentoDAO.ultimoAbastecimento();
 
-            txtDataAbastecimento.setText(DateUtilities.getDataAtualFormatada()); // falta carregar a data do abastecimento.
+            Long kmUltimoAbastecimento = (long) 0;
+            Long dataUltimoAbastecimento = (long) 0;
+            if (abastecimento.getKmAtual() != null) {
+                kmUltimoAbastecimento = abastecimento.getKmAtual();
+                dataUltimoAbastecimento = abastecimento.getData();
+            }
+
+            txtKmAbastecimento.setText( kmUltimoAbastecimento.toString() );
+
+            if (dataUltimoAbastecimento > (long) 0) {
+                txtDataAbastecimento.setText(DateUtilities.formatarData(dataUltimoAbastecimento));
+            }
 
             Integer valorTrocaFreio = veiculo.getTroca_oleo_filtro_anterior() + veiculo.getTroca_oleo_filtro_previsao() * milKm;
             txtKmTrocaFreio.setText( valorTrocaFreio.toString() );
 
-            if (valorKmAbastecimento + KmAlertaManutencao >= valorTrocaFreio){
-                txtKmTrocaFreio.setBackgroundColor( Color.parseColor(corVermelho));
-            } else if (valorKmAbastecimento + KmLembreteManutencao >= valorTrocaFreio) {
+            if (kmUltimoAbastecimento + KmAlertaManutencao >= valorTrocaFreio){
+                txtKmTrocaFreio.setBackgroundColor(Color.parseColor(corVermelho));
+            } else if (kmUltimoAbastecimento + KmLembreteManutencao >= valorTrocaFreio) {
                 txtKmTrocaFreio.setBackgroundColor(Color.parseColor(corAmarelo));
             } else {
                 txtKmTrocaFreio.setBackgroundColor(Color.TRANSPARENT);
@@ -159,9 +170,9 @@ public class PrincipalActivity extends AppCompatActivity{
             Integer valorTrocaPneu = veiculo.getTroca_oleo_filtro_anterior() + veiculo.getTroca_pneu_freio_previsao() * milKm;
             txtKmTrocaPneu.setText( valorTrocaPneu.toString() );
 
-            if (valorKmAbastecimento + KmAlertaManutencao >= valorTrocaPneu){
-                txtKmTrocaPneu.setBackgroundColor( Color.parseColor(corVermelho));
-            } else if (valorKmAbastecimento + KmLembreteManutencao >= valorTrocaPneu) {
+            if (kmUltimoAbastecimento + KmAlertaManutencao >= valorTrocaPneu){
+                txtKmTrocaPneu.setBackgroundColor(Color.parseColor(corVermelho));
+            } else if (kmUltimoAbastecimento + KmLembreteManutencao >= valorTrocaPneu) {
                 txtKmTrocaPneu.setBackgroundColor(Color.parseColor(corAmarelo));
             }else {
                 txtKmTrocaPneu.setBackgroundColor(Color.TRANSPARENT);
@@ -170,14 +181,13 @@ public class PrincipalActivity extends AppCompatActivity{
             Integer valorRevisaoGeral = veiculo.getRevisao_geral_anterior() + veiculo.getRevisao_geral_previsao() * milKm;
             txtKmRevisaoGeral.setText( valorRevisaoGeral.toString() );
 
-            if (valorKmAbastecimento + KmAlertaManutencao >= valorRevisaoGeral){
-                txtKmRevisaoGeral.setBackgroundColor( Color.parseColor(corVermelho));
-            } else if (valorKmAbastecimento + KmLembreteManutencao >= valorRevisaoGeral) {
+            if (kmUltimoAbastecimento + KmAlertaManutencao >= valorRevisaoGeral){
+                txtKmRevisaoGeral.setBackgroundColor(Color.parseColor(corVermelho));
+            } else if (kmUltimoAbastecimento + KmLembreteManutencao >= valorRevisaoGeral) {
                 txtKmRevisaoGeral.setBackgroundColor(Color.parseColor(corAmarelo));
             }else {
                 txtKmRevisaoGeral.setBackgroundColor(Color.TRANSPARENT);
             }
         }
     }
-
 }
