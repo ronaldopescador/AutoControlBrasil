@@ -81,7 +81,7 @@ public class ListaAbastecimentosActivity extends ListActivity {
         adapter.notifyDataSetChanged();
     }
 
-    private void novoAbastecimento(double kmAnterior){
+    private void novoAbastecimento(Long kmAnterior){
         Intent i = new Intent(this, InclusaoAbastecimentoActivity.class);
 
         i.putExtra("KMANTERIOR", kmAnterior);
